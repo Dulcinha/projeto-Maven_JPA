@@ -14,16 +14,15 @@ public class AlunoControle {
 	private EntityManagerFactory emf;
 
 	public AlunoControle() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("projeto"); 
-		EntityManager em = emf.createEntityManager(); 
+		emf = Persistence.createEntityManagerFactory("projeto"); 
+	 em = emf.createEntityManager(); 
 	}
 	public void inserir(Aluno objeto) {
 		try {
             em.getTransaction().begin();
             em.persist(objeto);
             em.getTransaction().commit();
-            em.close();
-            emf.close();
+            
          } catch (Exception ex) {
             ex.printStackTrace();
             em.getTransaction().rollback();
