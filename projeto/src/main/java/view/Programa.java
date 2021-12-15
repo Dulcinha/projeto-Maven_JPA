@@ -34,12 +34,12 @@ public class Programa {
 		em.close(); 
 		emf.close();
 		*/
-		Aluno aluno1 = new Aluno(null, "Sergio Nogueira", "2000-06-12", "1745291234", "1", "amarieis@gmail.com","F");
+		Aluno aluno1 = new Aluno(null, "Mario Nogueira", "2000-08-12", "1745291234", "1", "amarieis@gmail.com","F");
 		AlunoControle controle = new AlunoControle();
 		controle.buscarPorId(6);
-		controle.inserir(aluno1);
-		controle.alterar(aluno1);
-		controle.excluir(aluno1);
+		//controle.inserir(aluno1);
+		//controle.alterar(aluno1);
+		//controle.excluir(aluno1);
 		
 		/*List<Aluno> objetos = controle.buscarTodos();
 		for (Iterator iterator = objetos.iterator(); iterator.hasNext();) {
