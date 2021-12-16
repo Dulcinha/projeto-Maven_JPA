@@ -50,7 +50,7 @@ public class TelaCRUDAluno extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public TelaCRUDAluno() {
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 507, 260);
 		
 		JLabel lblTitulo = new JLabel("Cadastro de Alunos");
 		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -101,6 +101,8 @@ public class TelaCRUDAluno extends JInternalFrame {
 				aluno = new Aluno(null, textField_4.getText(), textField_2.getText(),   textField_1.getText(), textField_6.getText(), textField_3.getText(),textField_5.getText());
 				controle = new AlunoControle();
 				controle.inserir(aluno);
+				JOptionPane . showMessageDialog ( null , " Aluno cadastrado com sucesso. " );
+				textField.setText(String . valueOf (aluno.getRa()));
 			}
 		});
 		
@@ -123,7 +125,8 @@ controle = new AlunoControle();
 
 					
 					}else {
-						JOptionPane.showMessageDialog(null, "Não há aluno a ser modificado.");
+						JOptionPane.showMessageDialog(null, "Não há aluno a ser modificado."); 
+						limparTela();
 
 						
 					}
@@ -135,19 +138,15 @@ controle = new AlunoControle();
 			public void actionPerformed(ActionEvent e) {
 				if (aluno!=null) {
 					controle.excluir(aluno);
-			aluno = null;
-			textField.setText("");
-			textField_1.setText("");
-			textField_2.setText("");
-			textField_3.setText("");
-			textField_4.setText("");
-			textField_5.setText("");
-			textField_6.setText("");
+					
+			limparTela();
+			
 					
 					JOptionPane.showMessageDialog(null, "aluno excluído com sucesso.");
 			}else {
 					JOptionPane.showMessageDialog(null, "Não há aluno a ser excluído.");
 				}
+				limparTela();
 			}
 		});
 		
@@ -174,6 +173,14 @@ controle = new AlunoControle();
 					}
 			}
 		});
+		
+		JButton btnLimpar = new JButton("LIMPAR");
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limparTela();
+			}
+			
+		});
 		GroupLayout gl_painelCampos = new GroupLayout(painelCampos);
 		gl_painelCampos.setHorizontalGroup(
 			gl_painelCampos.createParallelGroup(Alignment.LEADING)
@@ -192,22 +199,26 @@ controle = new AlunoControle();
 						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_painelCampos.createSequentialGroup()
+							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+							.addComponent(btnLimpar, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE)
+							.addGap(70))
 						.addGroup(gl_painelCampos.createSequentialGroup()
 							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addComponent(btnNewButton_2, GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
 						.addGroup(gl_painelCampos.createSequentialGroup()
 							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addComponent(btnNewButton_1, GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
 						.addGroup(gl_painelCampos.createSequentialGroup()
 							.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addGap(10)
 							.addComponent(btnNewButton_4)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnNewButton)))
-					.addContainerGap(25, Short.MAX_VALUE))
+							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)))
+					.addGap(54))
 		);
 		gl_painelCampos.setVerticalGroup(
 			gl_painelCampos.createParallelGroup(Alignment.LEADING)
@@ -230,7 +241,8 @@ controle = new AlunoControle();
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_painelCampos.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_3)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnLimpar))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_painelCampos.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_4)
@@ -243,9 +255,19 @@ controle = new AlunoControle();
 					.addGroup(gl_painelCampos.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_6)
 						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(57, Short.MAX_VALUE))
+					.addContainerGap(20, Short.MAX_VALUE))
 		);
 		painelCampos.setLayout(gl_painelCampos);
 
 	}
+	public  void  limparTela () {
+		aluno =  null ;
+		textField . setText ( " " );
+		textField_1 . setText ( " " );
+		textField_2 . setText ( " " );
+		textField_3 . setText ( " " );
+		textField_4 . setText ( " " );
+		textField_5. setText ( " " );
+		textField_6. setText ( " " );
+}	
 }
